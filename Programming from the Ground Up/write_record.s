@@ -1,5 +1,5 @@
  .include "linux.s"
- .include "record-defs.s"
+ .include "record-def.s"
 #PURPOSE:	This function writes a record to
 #			the given file descriptor
 #
@@ -19,7 +19,7 @@ write_record:
 
  pushl %ebx
  movl $SYS_WRITE, %eax
- movl $ST_WRITE_BUFFER(%ebp), %ecx
+ movl ST_WRITE_BUFFER(%ebp), %ecx
  movl $RECORD_SIZE, %edx
  int $LINUX_SYSCALL
 

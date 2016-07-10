@@ -16,17 +16,17 @@
  .globl read_record
  .type read_record, @function
 read_record:
- pushl %ebp
- movl %esp, %ebp
+ pushl 	%ebp
+ movl 	%esp, %ebp
 
- pushl %ebx
- movl ST_FILEDES(%ebp), %eax
- movl ST_READ_BUFFER(%ebp), %ecx
- movl $RECORD_SIZE, %edx
- movl $SYS_READ, %eax,
- int $LINUX_SYSCALL
+ pushl 	%ebx
+ movl 	ST_FILEDES(%ebp), %eax
+ movl 	ST_READ_BUFFER(%ebp), %ecx
+ movl 	$RECORD_SIZE, %edx
+ movl 	$SYS_READ, %eax,
+ int 	$LINUX_SYSCALL
 
  #NOTE - 	%eax has the return value, which we will
  #			give back to our calling program
- popl %ebp
+ popl 	%ebp
  ret 

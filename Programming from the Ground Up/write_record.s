@@ -14,20 +14,21 @@
  .globl write_record
  .type write_record, @function
 write_record:
- pushl %ebp
- movl %esp, %ebp
+ pushl 	%ebp
+ movl 	%esp, %ebp
 
- pushl %ebx
- movl $SYS_WRITE, %eax
- movl ST_WRITE_BUFFER(%ebp), %ecx
- movl $RECORD_SIZE, %edx
- int $LINUX_SYSCALL
+ pushl 	%ebx
+ movl 	$SYS_WRITE, %eax
+ movl	ST_FILEDES(%ebp), %ebx
+ movl 	ST_WRITE_BUFFER(%ebp), %ecx
+ movl 	$RECORD_SIZE, %edx
+ int 	$LINUX_SYSCALL
 
  #NOTE -	%eax has the return value, which we will
  #			give back to our calling program
- popl %ebx
+ popl 	%ebx
 
- movl %ebp, %esp
- popl %ebp
+ movl 	%ebp, %esp
+ popl 	%ebp
  ret 
 

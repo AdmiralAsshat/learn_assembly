@@ -28,5 +28,8 @@ read_record:
 
  #NOTE - 	%eax has the return value, which we will
  #			give back to our calling program
+ popl	%ebx
+
+ movl	%ebp, %esp
  popl 	%ebp
  ret 

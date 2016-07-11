@@ -29,7 +29,7 @@ _start:
  movl	$SYS_OPEN, %eax
  movl	$file_name, %ebx
  movl	$0, %ecx	#This says to open read-only
- movl 	$0666, edx
+ movl 	$0666, %edx
  int 	$LINUX_SYSCALL
 
  #Save file descriptor
@@ -62,7 +62,7 @@ record_read_loop:
  #Otherwise, print out the first name
  #but first, we must know its size
  pushl	$RECORD_FIRSTNAME + record_buffer
- call	count_charts
+ call	count_chars
  addl	$4, %esp
  movl	%eax, %edx
  movl	ST_OUTPUT_DESCRIPTOR(%ebp), %ebx

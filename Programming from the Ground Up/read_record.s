@@ -1,4 +1,4 @@
- .include "record-defs.s"
+ .include "record-def.s"
  .include "linux.s"
 
 #PURPOSE:	This function reads a record from the file
@@ -23,7 +23,7 @@ read_record:
  movl 	ST_FILEDES(%ebp), %eax
  movl 	ST_READ_BUFFER(%ebp), %ecx
  movl 	$RECORD_SIZE, %edx
- movl 	$SYS_READ, %eax,
+ movl 	$SYS_READ, %eax
  int 	$LINUX_SYSCALL
 
  #NOTE - 	%eax has the return value, which we will

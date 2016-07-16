@@ -31,6 +31,30 @@ _start:
 
  movl	%eax, ST_INPUT_DESCRIPTOR(%ebp)
 
+ #This will test to see if %eax is
+ #negative. If it is not negative, it
+ #will jump to continue_processing.
+ #Otherwise it will handle the error
+ #condition that the negative number 
+ #represents.
+ cmpl	$0, %eax
+ jl		continue_processing
+
+ #Send the error
+ .section .data
+no_open_file_code:
+ .ascii "0001: \0"
+no_open_file_msg:
+ .ascii "Can't Open Input File\0"
+
+ .section .text
+ pushl	$no_open_file_msg
+ pushl	$no_open_file_code
+ call	error_exit
+
+continue_processing:
+ 
+
  #Open file for writing
  movl	$SYS_OPEN, %eax
  movl	$output_file_name, %ebx

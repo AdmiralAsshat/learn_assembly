@@ -220,7 +220,7 @@ move_break:						#if we've made it here, that
  cmpl	$0, %eax 			#check for error conditions
  je		error
 
- popl	%ebx 				%restore saved registers
+ popl	%ebx 				#restore saved registers
  popl	%ecx
  popl	%eax
 
@@ -243,7 +243,7 @@ move_break:						#if we've made it here, that
 error:
  movl	$0, %eax 				#on error, we return zero
  movl	%ebp, %esp
- popl
+ popl	%ebp
  ret
 #######END OF FUNCTION#######
 
